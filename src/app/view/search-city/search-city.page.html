@@ -20,7 +20,7 @@
         </div>
 
         <ion-list lines="none" *ngIf="!errorMessage">
-          <ion-item *ngFor="let city of cities">
+          <ion-item *ngFor="let city of cities" button detail (click)="selectCity(city)">
             <ion-label>
               <h2>{{ city.name }}</h2>
               <ion-text color="primary">

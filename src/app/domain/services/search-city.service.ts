@@ -3,7 +3,7 @@ import { CityNotFoundError } from "../errors/city-not-found.error";
 import { CityRepository } from "./protocols/city-repository";
 
 export class SearchCityService {
-    constructor(private readonly repo: CityRepository) {}
+    constructor(private readonly repo: CityRepository) { }
 
     async searchByName(name: string): Promise<City[]> {
         if (!name || name.trim().length < 3) {
@@ -12,8 +12,9 @@ export class SearchCityService {
 
         const allCities = await this.repo.getAll();
 
+        const normalizedName = this.normalizeText(name);
         const filteredCities = allCities.filter(
-            (city: City) => city.name.toLowerCase().indexOf(name.toLowerCase()) > -1
+            (city: City) => this.normalizeText(city.name).indexOf(normalizedName) > -1
         );
 
         if (filteredCities.length == 0) {
@@ -21,5 +22,12 @@ export class SearchCityService {
         }
 
         return filteredCities;
+    }
+
+    private normalizeText(text: string): string {
+        return text
+            .normalize('NFD')                  
+            .replace(/[\u0300-\u036f]/g, '')   
+            .toLowerCase();                    
     }
 }

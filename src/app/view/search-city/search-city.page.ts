@@ -25,4 +25,12 @@ export class SearchCityPage {
     }
   }
 
+  selectCity(city: City) {
+    if (!city || !city.coords) {
+      return;
+    }
+    
+    window.open(`https://www.google.com/maps?q=${city.coords.latitude},${city.coords.longitude}`, '_blank');
+  }
+
 }
