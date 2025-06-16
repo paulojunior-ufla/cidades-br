@@ -9,13 +9,15 @@
     <ion-row>
       <ion-col size="12" size-md="6" offset-md="3">
         <ion-searchbar 
-          placeholder="Econtre sua cidade..."
-          #searchInput
+          placeholder="Econtre sua cidade..." 
+          #searchInput 
           (ionChange)="onSearch(searchInput.value)"
-          debounce="500"
-        ></ion-searchbar>
+          debounce="500">
+        </ion-searchbar>
 
-        <app-error-message *ngIf="errorMessage" [message]="errorMessage"></app-error-message>
+        <div *ngIf="errorMessage" class="ion-text-center">
+          <h5><strong>{{ errorMessage }}</strong></h5>
+        </div>
 
         <ion-list lines="none" *ngIf="!errorMessage">
           <ion-item *ngFor="let city of cities">
@@ -26,8 +28,8 @@
               </ion-text>
             </ion-label>
           </ion-item>
-
         </ion-list>
+
       </ion-col>
     </ion-row>
   </ion-grid>

@@ -10,19 +10,19 @@ import { SearchCityService } from '../../domain/services/search-city.service';
 export class SearchCityPage {
 
   errorMessage = null;
-    cities: City[] = [];
-  
-    constructor(
-      private readonly cityService: SearchCityService,
-    ) { }
-  
-    async onSearch(query: string) {
-      try {
-        this.errorMessage = null;
-        this.cities = await this.cityService.searchByName(query)
-      } catch (error) {
-        this.errorMessage = error.message
-      }
+  cities: City[] = [];
+
+  constructor(
+    private readonly cityService: SearchCityService,
+  ) { }
+
+  async onSearch(query: string) {
+    try {
+      this.errorMessage = null;
+      this.cities = await this.cityService.searchByName(query)
+    } catch (error) {
+      this.errorMessage = error.message
     }
+  }
 
 }

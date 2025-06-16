@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { SearchCityPageRoutingModule } from './search-city-routing.module';
-
-import { SharedModule } from '../shared/shared.module';
+import { CommonModule } from '@angular/common';
+import { IonicModule } from '@ionic/angular';
+import { FormsModule } from '@angular/forms';
 import { SearchCityPage } from './search-city.page';
 
 @NgModule({
   imports: [
-    SharedModule,
+    CommonModule,
+    FormsModule,
+    IonicModule,
     SearchCityPageRoutingModule
   ],
   declarations: [SearchCityPage]
