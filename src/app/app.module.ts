@@ -10,7 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { SearchCityService } from './domain/services/search-city.service';
 import { LocalCityRepository } from './data/local/local-city-repository';
 
-const createSearchCityService = () => {
+const searchCityServiceFactory = () => {
   return new SearchCityService(new LocalCityRepository())
 }
 
@@ -19,7 +19,7 @@ const createSearchCityService = () => {
   imports: [BrowserModule, IonicModule.forRoot(), HttpClientModule, AppRoutingModule],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    { provide: SearchCityService, useFactory: createSearchCityService },
+    { provide: SearchCityService, useFactory: searchCityServiceFactory },
   ],
   bootstrap: [AppComponent],
 })
